@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:flexible_cache/services/fixture/fixture_api_service.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -51,8 +54,11 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  var _fixtureApiService = FixtureApiService();
 
-  void _incrementCounter() {
+  Future _incrementCounter() async {
+    var result = await _fixtureApiService.getRaces(DateTime.now());
+    log(result?.meetings?.length?.toString() ?? "NA");
     setState(() {
       // This call to setState tells the Flutter framework that something has
       // changed in this State, which causes it to rerun the build method below
